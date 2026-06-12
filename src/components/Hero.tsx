@@ -115,7 +115,7 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 1.0 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.5 },
   },
 };
 
@@ -144,7 +144,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[100svh] w-full overflow-hidden bg-neutral-950 text-white flex flex-col justify-center pb-24 md:pb-0" // pb-24 mobil, damit Marquee nichts verdeckt
+      className="relative min-h-[100dvh] w-full overflow-hidden bg-neutral-950 text-white flex flex-col justify-center pb-24 md:pb-0"
       aria-label="Hero"
     >
       {/* Subtile Sternen-/Glow-Atmosphäre */}
@@ -163,8 +163,8 @@ export function Hero() {
           autoPlay
           muted
           loop
-          playsInline
-          className="h-full w-full object-cover opacity-90"
+          playsInline // Sehr wichtig für iPhone Safari!
+          className="absolute inset-0 h-full w-full object-cover opacity-90"
         />
         <div className="absolute inset-0 bg-[radial-(ellipse_at_top,_rgba(100,100,120,0.3),_rgba(20,20,25,0.8)_100%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/0" />
@@ -182,19 +182,25 @@ export function Hero() {
         variants={staggerContainer}
         initial="hidden"
         animate="show"
-        className="relative z-20 mx-auto flex w-full max-w-[1400px] flex-col items-center px-6 py-12 md:py-16" // max-w erhöht für Desktop-Randnähe
+        className="relative z-20 mx-auto flex w-full max-w-[1400px] flex-col items-center px-6 py-12 md:py-16"
       >
-        {/* LOGO: translate-y-12 md:translate-y-20 hinzugefügt, um es NOCH ein Stückchen weiter nach unten zu schieben */}
-        <motion.div variants={fadeUpBlur} className="w-full max-w-[280px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[600px] cursor-pointer flex justify-center shrink-0 -translate-x-2 md:-translate-x-4 translate-y-12 md:translate-y-20">
+        {/* LOGO: Verzögerung von 3 Sekunden und wieder GRÖSSER auf dem Desktop */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ delay: 3, duration: 1.5, ease: "easeOut" }} 
+          className="w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[750px] xl:max-w-[850px] cursor-pointer flex justify-center shrink-0 -translate-x-2 md:-translate-x-4 translate-y-6 md:translate-y-16"
+        >
           <img 
             src={logoImage} 
             alt="B Studio Nails Logo" 
-            className="w-full h-auto max-h-[40svh] md:max-h-[50svh] object-contain drop-shadow-2xl scale-[1.4] sm:scale-[1.5] md:scale-[1.6]" 
+            // HIER GEÄNDERT: drop-shadow-2xl ersetzt durch drop-shadow-[0_0_20px_rgba(255,255,255,0.3)] für den sanften Glow
+            className="w-full h-auto max-h-[30dvh] md:max-h-[55dvh] object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.3)] md:scale-125 lg:scale-[1.75]" 
           />
         </motion.div>
 
-        {/* 3-SPALTIGES GRID-LAYOUT: Auf Mobile als Spalte, auf Desktop in 3 Bereichen */}
-        <div className="mt-12 md:mt-16 flex w-full flex-col md:grid md:grid-cols-3 md:items-center gap-10 md:gap-4 px-0 lg:px-8">
+        {/* 3-SPALTIGES GRID-LAYOUT */}
+        <div className="mt-8 md:mt-24 flex w-full flex-col md:grid md:grid-cols-3 md:items-center gap-8 md:gap-4 px-0 lg:px-8">
           
           {/* Linke Seite: Leer auf Desktop */}
           <div className="hidden md:block"></div>
@@ -207,7 +213,6 @@ export function Hero() {
             >
             </motion.p>
 
-            {/* HIER GEÄNDERT: Button ist jetzt größer (px-10 py-4 text-xs md:text-sm) und steht über dem Text */}
             <motion.a
               variants={fadeUpBlur}
               href={STUDIO.bookingUrl}
@@ -216,7 +221,6 @@ export function Hero() {
               Termin buchen
             </motion.a>
 
-            {/* HIER GEÄNDERT: Text steht jetzt unter dem Button */}
             <motion.p
               variants={fadeUpBlur}
               className="mt-4 text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/70"
@@ -225,7 +229,7 @@ export function Hero() {
             </motion.p>
           </div>
 
-          {/* Rechte Seite: Atelier Karte & Mehr Entdecken Button - Ganz nach rechts geschoben */}
+          {/* Rechte Seite: Atelier Karte & Mehr Entdecken Button */}
           <motion.div variants={fadeUpBlur} className="flex flex-col gap-3 w-full sm:max-w-[320px] mx-auto md:mx-0 md:ml-auto md:w-full lg:max-w-[280px]">
             
             {/* Atelier Info Card */}
