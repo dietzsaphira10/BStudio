@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { STUDIO } from "@/lib/studio";
 
 // Asset Import für das Logo (image_2.png)
-import logoImage from "@/assets/Instagramlogo.jpg"; // Bitte Pfad prüfen
+import logoImage from "@/assets/InstagramLogo.jpg"; // Bitte Pfad prüfen
 
 // --- HILFS-KOMPONENTE: COMING SOON POPUP ---
 function ComingSoonModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
