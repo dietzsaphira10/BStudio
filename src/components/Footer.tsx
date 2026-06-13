@@ -1,17 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { STUDIO } from "@/lib/studio";
 
-// Asset Import für das Logo
-import logoImage from "@/assets/InstagramLogo.jpg"; // Bitte Pfad und Groß-/Kleinschreibung prüfen
-
-// --- AKTUELLE DATEN AUS DEINEM GOOGLE EINTRAG ---
-const STUDIO_DATA = {
-  name: "BSTUDIO 893",
-  tagline: "Nagelstudio in Zürich, Schweiz",
-  email: "info@bstudio893.ch", // Platzhalter, falls du eine Mailadresse hast
-  phone: "+41 78 307 96 88",
-  address: "Bahnhofplatz 3, 8001 Zürich, Schweiz"
-};
+// Asset Import für das Logo (image_2.png)
+import logoImage from "@/assets/Instagramlogo.jpg"; // Bitte Pfad prüfen
 
 // --- HILFS-KOMPONENTE: COMING SOON POPUP ---
 function ComingSoonModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -69,7 +61,7 @@ function ComingSoonModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
             </h4>
             
             <p className="font-jost text-sm text-[#111111]/70 leading-relaxed italic">
-              Vielen Dank für dein Interesse! Wir arbeiten gerade fleißig an diesem Bereich für {STUDIO_DATA.name}.
+              Vielen Dank für dein Interesse! Wir arbeiten gerade fleißig an diesem Bereich für {STUDIO.name}.
             </p>
           </motion.div>
         </motion.div>
@@ -98,17 +90,15 @@ export function Footer() {
             {/* === MARKEN / SLOGAN BEREICH === */}
             <div className="col-span-12 md:col-span-5 flex flex-col items-start text-left">
               
-              {/* Logo aus den Assets */}
-              <div className="h-14 w-14 mb-6 overflow-hidden rounded-full border border-neutral-200">
-                 <img src={logoImage} alt={STUDIO_DATA.name} className="h-full w-full object-cover" />
-              </div>
+              {/* Optionales Logo oben links, wie im Blooming Bar Layout */}
+              <img src={logoImage} alt={STUDIO.name} className="h-14 w-auto mb-6 opacity-60" />
 
               <h3 className="font-serif italic font-light tracking-wide text-[#111111] text-4xl sm:text-5xl lg:text-6xl">
-                {STUDIO_DATA.name}
+                {STUDIO.name}
               </h3>
               
               <p className="font-jost text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#111111]/60 mt-6">
-                — {STUDIO_DATA.tagline}
+                — {STUDIO.tagline}
               </p>
             </div>
 
@@ -133,8 +123,8 @@ export function Footer() {
               </p>
               <ul className="space-y-4 text-sm font-medium tracking-wide">
                 <li><a href="#" onClick={handleDisabledLinkClick} className="cursor-pointer hover:text-[#A48973] transition-colors">Instagram</a></li>
-                <li><a href="#" onClick={handleDisabledLinkClick} className="cursor-pointer hover:text-[#A48973] transition-colors">{STUDIO_DATA.email}</a></li>
-                <li><a href="#" onClick={handleDisabledLinkClick} className="cursor-pointer hover:text-[#A48973] transition-colors">{STUDIO_DATA.phone}</a></li>
+                <li><a href="#" onClick={handleDisabledLinkClick} className="cursor-pointer hover:text-[#A48973] transition-colors">{STUDIO.email}</a></li>
+                <li><a href="#" onClick={handleDisabledLinkClick} className="cursor-pointer hover:text-[#A48973] transition-colors">{STUDIO.phone}</a></li>
               </ul>
             </div>
           </div>
@@ -142,10 +132,10 @@ export function Footer() {
           {/* === FOOTER BOTTOM BEREICH === */}
           <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-[#111111]/10 pt-8 md:flex-row md:items-center">
             <p className="font-jost text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#111111]/50">
-              © {new Date().getFullYear()} {STUDIO_DATA.name} • Alle Rechte vorbehalten
+              © {new Date().getFullYear()} {STUDIO.name} • Alle Rechte vorbehalten
             </p>
             <p className="font-jost text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#111111]/50">
-              {STUDIO_DATA.address}
+              {STUDIO.address.street} • {STUDIO.address.city}
             </p>
           </div>
         </div>

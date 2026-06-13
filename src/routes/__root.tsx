@@ -14,7 +14,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { BottomNav } from "@/components/BottomNav";
 import { InstagramInstant } from "@/components/InstagramInstant";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ThreeBackground } from "@/components/ThreeBackground";
@@ -115,7 +114,6 @@ function RootComponent() {
         </main>
         <Footer />
         <InstagramInstant />
-        <BottomNav />
         <CookieBanner />
       </div>
     </QueryClientProvider>

@@ -23,9 +23,7 @@ export function Reviews() {
     <section className="relative bg-background/80 backdrop-blur-md">
       
     
-
-
-      {/* --- NEUE SPANNENDE REVIEWS SEKTION --- */}
+{/* --- NEUE SPANNENDE REVIEWS SEKTION --- */}
       <section className="relative w-full overflow-hidden py-24 md:py-32">
         
         {/* Studio-Bild als edler Slider-Hintergrund */}

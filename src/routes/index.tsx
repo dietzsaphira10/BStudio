@@ -1,6 +1,10 @@
 // routes/index.tsx
 import { createFileRoute } from "@tanstack/react-router";
-import { Hero } from "@/components/Hero";
+
+// HIER GEÄNDERT: Die geschweiften Klammern { } sind weg. 
+// So importiert man einen "export default".
+import Hero from "@/components/Hero"; 
+
 import { Services } from "@/components/Services";
 import { Gallery } from "@/components/Gallery";
 import { About } from "@/components/About";
